@@ -5,7 +5,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const app = express();
 
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:5173'], // Replace with actual frontends
+    origin: ['https://scanme-kashmir.gofastapi.com', 'https://client-kashmir.gofastapi.com'], // Replace with actual frontends
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };

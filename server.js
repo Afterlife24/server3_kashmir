@@ -211,7 +211,7 @@ async function connectToMongo() {
         startServer(); // Start the server only after MongoDB connection is successful
     } catch (err) {
         console.error('Error connecting to MongoDB:', err);
-        setTimeout(connectToMongo, 5000); // Retry connection after 5 seconds
+        setTimeout(connectToMongo, 3000); // Retry connection after 5 seconds
     }
 }
 

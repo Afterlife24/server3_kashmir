@@ -195,31 +195,25 @@ app.use(bodyParser.json());
 let db;
 let client;
 
-const uri = "mongodb+srv://Dhanush6371:Dhanush2002@cluster0.kozns.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://Dhanush6371:Dhanush2002@cluster0.kozns.mongodb.net/Dhanush6371?retryWrites=true&w=majority";
 
-// Connect to MongoDB with reconnection logic
+// Connect to MongoDB
 async function connectToMongo() {
     try {
-        if (!client || !client.isConnected()) {
-            client = new MongoClient(uri, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
-                socketTimeoutMS: 45000,        // Close sockets after 45 seconds
-                keepAlive: true,               // Enable keep-alive
-            });
-            await client.connect();
-            db = client.db('Dhanush6371'); // Replace 'Dhanush6371' with your database name
-            console.log('Connected to MongoDB');
-        }
+        client = new MongoClient(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+        });
+        await client.connect();
+        db = client.db('Dhanush6371'); // Replace 'Dhanush6371' with your database name
+        console.log('Connected to MongoDB');
+        startServer(); // Start the server only after MongoDB connection is successful
     } catch (err) {
         console.error('Error connecting to MongoDB:', err);
         setTimeout(connectToMongo, 5000); // Retry connection after 5 seconds
     }
 }
-
-// Initialize connection
-connectToMongo();
 
 // Helper function to get database
 const getDatabase = async () => {
@@ -228,6 +222,14 @@ const getDatabase = async () => {
     }
     return db;
 };
+
+// Delayed server start
+// function startServer() {
+//     const PORT = process.env.PORT || 5000;
+//     app.listen(PORT, () => {
+//         console.log(`Server is running on http://localhost:${PORT}`);
+//     });
+// }
 
 // Endpoint to send the order
 app.post("/sendOrder", async (req, res) => {
@@ -370,10 +372,9 @@ app.get('/streamReservations', async (req, res) => {
     }
 });
 
-// Start server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on http://localhost:${PORT}`);
-// });
+// Initialize MongoDB connection
+connectToMongo();
+
+
 
 module.exports = app;

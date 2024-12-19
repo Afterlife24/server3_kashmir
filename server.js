@@ -172,7 +172,7 @@
 
 
 
-
+// -------------------------------------------------------------------------------------------------------------
 
 
 
@@ -203,7 +203,7 @@ async function connectToMongo() {
         client = new MongoClient(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+            serverSelectionTimeoutMS: 3000, // Timeout after 5 seconds
         });
         await client.connect();
         db = client.db('Dhanush6371'); // Replace 'Dhanush6371' with your database name

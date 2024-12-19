@@ -16,7 +16,7 @@
 // let db;
 
 // // Connect to MongoDB
-// const uri = "mongodb+srv://Dhanush6371:Dhanush2002@cluster0.kozns.mongodb.net/Dhanush6371?retryWrites=true&w=majority";
+// const uri = "mongodb+srv://Dhanush6371:Dhanush2002@cluster0.kozns.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // client.connect()
@@ -195,7 +195,7 @@ app.use(bodyParser.json());
 let db;
 let client;
 
-const uri = "mongodb+srv://Dhanush6371:Dhanush2002@cluster0.kozns.mongodb.net/Dhanush6371?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Dhanush6371:Dhanush2002@cluster0.kozns.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Connect to MongoDB with reconnection logic
 async function connectToMongo() {

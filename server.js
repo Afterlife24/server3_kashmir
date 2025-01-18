@@ -389,7 +389,6 @@ app.post("/markAsDelivered", async (req, res) => {
 
 
 // });
-
 app.post("/reserveTable", async (req, res) => {
     try {
         console.log("1");
